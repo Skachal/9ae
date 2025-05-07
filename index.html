@@ -91,15 +91,16 @@
 
 <audio id="explosionSound" src="./Bonapart_Madi_Rymbaev_-_SHokolad_66536311.mp3" preload="auto" type="audio/mpeg"></audio>
 <script>
-  function triggerExplosion() {
-    const sound = document.getElementById('explosionSound');
-    if (sound) {
-      sound.play().catch(error => console.log('Sound playback failed:', error));
-    }
+ function triggerExplosion() {
+  const sound = document.getElementById('explosionSound');
+  if (sound) {
+    sound.play().catch(error => console.log('Sound playback failed:', error));
+  }
 
-    const numPhotos = 40; // Количество фото
-    const totalImages = 20; // Общее количество картинок в одной партии
+  const numPhotos = 40; // Количество фото
+  const totalImages = 20; // Общее количество картинок в одной партии
 
+  function createMemory() {
     for (let i = 0; i < totalImages; i++) {
       const memory = document.createElement('div');
       memory.classList.add('memory');
@@ -116,6 +117,11 @@
       }, 10000);
     }
   }
+
+  // Используем requestAnimationFrame для мгновенного создания
+  requestAnimationFrame(createMemory);
+}
+
 </script>
 
 </body>
