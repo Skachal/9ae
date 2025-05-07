@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Выпускной 11-Б</title>
+  <style>
+    * { 
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(145deg, #121212, #1e1e1e);
+      color: #f0f0f0;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      animation: fadeIn 2s ease;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      color: #f8a1c4;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .cta {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .cta button {
+      background: #f8a1c4;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cta button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .memory {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background-size: cover;
+      opacity: 1;
+      animation: fall 8s ease, fadeOut 10s forwards;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Последняя встреча 9-Ә</h1>
+  <div>Навсегда в нашей памяти ✨</div>
+</header>
+
+<div class="cta">
+  <button onclick="triggerExplosion()">ПШЛНХ</button>
+</div>
+
+<audio id="explosionSound" src="./Песня - Как же я люблю тебя им не понять.mp3" preload="auto" type="audio/mpeg"></audio>
+
+<script>
+  function triggerExplosion() {
+    const sound = document.getElementById('explosionSound');
+    if (sound) {
+      sound.play().catch(error => console.log('Sound playback failed:', error));
+    }
+
+    let batch = 1;
+    const maxBatches = 3;
+    const interval = setInterval(() => {
+      if (batch > maxBatches) {
+        clearInterval(interval);
+        return;
+      }
+
+      for (let i = 0; i < 6; i++) {
+        const memory = document.createElement('div');
+        memory.classList.add('memory');
+        memory.style.backgroundImage = `url('https://picsum.photos/100/100?random=${Math.floor(Math.random() * 100)}')`;
+        memory.style.left = `${Math.random() * 80}vw`;
+        memory.style.top = `-${Math.random() * 50}vh`;
+        document.body.appendChild(memory);
+
+        setTimeout(() => {
+          memory.remove();
+        }, 10000);
+      }
+
+      batch++;
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>
