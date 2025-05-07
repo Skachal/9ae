@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Выпускной 11-Б</title>
+  <title>Пикник 9-Ә</title>
   <style>
     * { 
       box-sizing: border-box;
@@ -63,7 +63,8 @@
       height: 80px;
       background-size: cover;
       opacity: 1;
-      animation: fall 8s ease, fadeOut 10s forwards;
+      animation: fall 8s linear, fadeOut 10s forwards;
+
     }
 
     @keyframes fall {
@@ -81,8 +82,7 @@
 
 <header>
   <h1>Пикник 9-Ә</h1>
-  <div>Навсегда в нашей памяти ✨</div>
-  <div style="  color: #f5c3d7;margin-top: 10px;font-family: 'Poppins', sans-serif;">Пусть каждый из нас найдет свой путь, но не забывает те дни, когда мы были вместе</div>
+  <div>ұлдар сендерды 09.05.2025 күні пикникка шақырамыз</div>
 </header>
 
 <div class="cta">
@@ -97,35 +97,24 @@
       sound.play().catch(error => console.log('Sound playback failed:', error));
     }
 
-    let batch = 1;
-    const maxBatches = 3;
-    const numPhotos = 40; // Количество ваших фото
-    const interval = setInterval(() => {
-      if (batch > maxBatches) {
-        clearInterval(interval);
-        return;
-      }
+    const numPhotos = 40; // Количество фото
+    const totalImages = 20; // Общее количество картинок в одной партии
 
-      for (let i = 0; i < 6; i++) {
-        const memory = document.createElement('div');
-        memory.classList.add('memory');
+    for (let i = 0; i < totalImages; i++) {
+      const memory = document.createElement('div');
+      memory.classList.add('memory');
 
-        // Генерируем случайное число от 0 до 40
-        const randomNum = Math.floor(Math.random() * (numPhotos + 1));
-        const photoName = randomNum === 0 ? 'photo.jpeg' : `photo${randomNum}.jpeg`;
-        
-        // Используем ваши фото с обновленными именами
-        memory.style.backgroundImage = `url('./images/${photoName}')`;
-        memory.style.left = `${Math.random() * 80}vw`;
-        memory.style.top = `-${Math.random() * 50}vh`;
-        document.body.appendChild(memory);
+      const randomNum = Math.floor(Math.random() * (numPhotos + 1));
+      const photoName = randomNum === 0 ? 'photo.jpeg' : `photo${randomNum}.jpeg`;
+      memory.style.backgroundImage = `url('./images/${photoName}')`;
+      memory.style.left = `${Math.random() * 80}vw`;
+      memory.style.top = `-${Math.random() * 50}vh`;
+      document.body.appendChild(memory);
 
-        setTimeout(() => {
-          memory.remove();
-        }, 10000);
-      }
-      batch++;
-    }, 2000);
+      setTimeout(() => {
+        memory.remove();
+      }, 10000);
+    }
   }
 </script>
 
