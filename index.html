@@ -42,7 +42,7 @@
     }
 
     .cta button {
-      background: #f8a1c4;
+      background: #ebafc7;
       color: white;
       padding: 15px 30px;
       font-size: 1.2rem;
@@ -75,7 +75,6 @@
       0% { opacity: 1; }
       100% { opacity: 0; }
     }
-
   </style>
 </head>
 <body>
@@ -83,14 +82,14 @@
 <header>
   <h1>Пикник 9-Ә</h1>
   <div>Навсегда в нашей памяти ✨</div>
+  <div style="  color: #f5c3d7;margin-top: 10px;font-family: 'Poppins', sans-serif;">Пусть каждый из нас найдет свой путь, но не забывает те дни, когда мы были вместе</div>
 </header>
 
 <div class="cta">
-  <button onclick="triggerExplosion()">СГЛ!!!!</button>
+  <button onclick="triggerExplosion()">КЛИКАЙ😊</button>
 </div>
 
-<audio id="explosionSound" src="./Песня - Как же я люблю тебя им не понять.mp3" preload="auto" type="audio/mpeg"></audio>
-
+<audio id="explosionSound" src="./Bonapart_Madi_Rymbaev_-_SHokolad_66536311.mp3" preload="auto" type="audio/mpeg"></audio>
 <script>
   function triggerExplosion() {
     const sound = document.getElementById('explosionSound');
@@ -100,6 +99,7 @@
 
     let batch = 1;
     const maxBatches = 3;
+    const numPhotos = 40; // Количество ваших фото
     const interval = setInterval(() => {
       if (batch > maxBatches) {
         clearInterval(interval);
@@ -109,7 +109,13 @@
       for (let i = 0; i < 6; i++) {
         const memory = document.createElement('div');
         memory.classList.add('memory');
-        memory.style.backgroundImage = `url('https://picsum.photos/100/100?random=${Math.floor(Math.random() * 100)}')`;
+
+        // Генерируем случайное число от 0 до 40
+        const randomNum = Math.floor(Math.random() * (numPhotos + 1));
+        const photoName = randomNum === 0 ? 'photo.jpeg' : `photo${randomNum}.jpeg`;
+        
+        // Используем ваши фото с обновленными именами
+        memory.style.backgroundImage = `url('./images/${photoName}')`;
         memory.style.left = `${Math.random() * 80}vw`;
         memory.style.top = `-${Math.random() * 50}vh`;
         document.body.appendChild(memory);
@@ -118,7 +124,6 @@
           memory.remove();
         }, 10000);
       }
-
       batch++;
     }, 2000);
   }
